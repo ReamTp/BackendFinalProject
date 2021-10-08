@@ -1,64 +1,37 @@
 package com.backend.backendfinalproject.models;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
 @Table(name = "cities")
+@ToString
 public class City implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, nullable = false)
+    @Getter @Setter
     private int id;
+
+    @Getter @Setter @Column(nullable = false)
     private String name;
 
-    @OneToOne()
-    private Department department;
+    @Getter @Setter @Column(nullable = false)
     private Boolean state;
+
+    @OneToOne() @Getter @Setter @JoinColumn(nullable = false)
+    private Department department;
 
     public City() {}
 
-    public City(int id, String name, Department department, Boolean state) {
+    public City(int id, String name, Boolean state, Department department) {
         this.id = id;
         this.name = name;
-        this.department = department;
         this.state = state;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Department getDepartment() {
-        return department;
-    }
-
-    public void setDepartment(Department department) {
         this.department = department;
-    }
-
-    public Boolean getState() {
-        return state;
-    }
-
-    public void setState(Boolean state) {
-        this.state = state;
-    }
-
-    @Override
-    public String toString(){
-        return "City [id="+id+", name="+name+", department="+department+", state="+state+"]";
     }
 }

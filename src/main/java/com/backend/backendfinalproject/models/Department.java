@@ -1,16 +1,27 @@
 package com.backend.backendfinalproject.models;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name = "departments")
+@ToString
 public class Department implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, nullable = false)
+    @Getter @Setter
     private int id;
+
+    @Getter @Setter @Column(nullable = false)
     private String name;
+
+    @Getter @Setter @Column(nullable = false)
     private Double state;
 
     public Department() {}
@@ -19,34 +30,5 @@ public class Department implements Serializable {
         this.id = id;
         this.name = name;
         this.state = state;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Double getState() {
-        return state;
-    }
-
-    public void setState(Double state) {
-        this.state = state;
-    }
-
-    @Override
-    public String toString(){
-        return "Departments [id="+ id +", name="+ name +", state="+ state +"]";
     }
 }
