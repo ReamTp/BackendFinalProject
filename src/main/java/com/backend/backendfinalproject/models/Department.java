@@ -22,11 +22,11 @@ public class Department implements Serializable {
     private String name;
 
     @Getter @Setter @Column(nullable = false)
-    private Double state;
+    private Boolean state;
 
     public Department() {}
 
-    public Department(int id, String name, Double state) {
+    public Department(int id, String name, Boolean state) {
         this.id = id;
         this.name = name;
         this.state = state;
