@@ -35,7 +35,6 @@ public class UserController {
         // hash(n_interacciones, memoria, numero de hilos, texto)
         String hash = argon2.hash(1, 1024, 1, user.getPassword());
         user.setPassword(hash);
-
         return jwt.validateToken(token) ? userRepository.register(user) : new Response("Register Failed", false);
     }
 
