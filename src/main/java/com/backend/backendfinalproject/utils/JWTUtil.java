@@ -36,16 +36,8 @@ public class JWTUtil {
     @Value("${security.jwt.ttlMillis}")
     private long ttlMillis;
 
-    private final Logger log = LoggerFactory
-            .getLogger(JWTUtil.class);
+    private final Logger log = LoggerFactory.getLogger(JWTUtil.class);
 
-    /**
-     * Create a new token.
-     *
-     * @param id
-     * @param subject
-     * @return
-     */
     public String create(String id, String subject) {
 
         // The JWT signature algorithm used to sign the token
@@ -72,12 +64,6 @@ public class JWTUtil {
         return builder.compact();
     }
 
-    /**
-     * Method to validate and read the JWT
-     *
-     * @param jwt
-     * @return
-     */
     public String getValue(String jwt) {
         // This line will throw an exception if it is not a signed JWS (as
         // expected)
@@ -87,12 +73,6 @@ public class JWTUtil {
         return claims.getSubject();
     }
 
-    /**
-     * Method to validate and read the JWT
-     *
-     * @param jwt
-     * @return
-     */
     public String getKey(String jwt) {
         // This line will throw an exception if it is not a signed JWS (as
         // expected)
