@@ -6,6 +6,7 @@ import com.backend.backendfinalproject.models.City;
 import java.util.List;
 
 public interface ICityRepository {
+    //metodos
     public List<City> getCities();
     public Object getCity(int id);
     public Response register(City city);
