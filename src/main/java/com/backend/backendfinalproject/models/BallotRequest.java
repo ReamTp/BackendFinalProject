@@ -14,13 +14,15 @@ public class BallotRequest {
     private Date date;
     private double total;
     private List<ProductBallot> products;
+    private List<ExtraBallot> extras;
 
     public BallotRequest() {}
 
-    public BallotRequest(int user_id, Date date, double total, List<ProductBallot> products) {
+    public BallotRequest(int user_id, Date date, double total, List<ProductBallot> products, List<ExtraBallot> extras) {
         this.user_id = user_id;
         this.date = date;
         this.total = total;
         this.products = products;
+        this.extras = extras;
     }
 }

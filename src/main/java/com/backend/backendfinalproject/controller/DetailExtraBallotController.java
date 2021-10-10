@@ -26,23 +26,5 @@ public class DetailExtraBallotController {
     public Object getBallot(@PathVariable int id) {
         return iDetailExtraBallotRepository.getDetailExtraBallot(id);
     }
-
-    @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public Response register(@RequestBody DetailExtraBallot request) {
-        System.out.println(request);
-
-        DetailExtraBallot detailExtraBallot = new DetailExtraBallot();
-
-        Ballot ballot = new Ballot();
-        ballot.setId(request.getBallot().getId());
-
-        Extra extra = new Extra();
-        extra.setId(request.getExtra().getId());
-
-        detailExtraBallot.setBallot(ballot);
-        detailExtraBallot.setExtra(extra);
-        detailExtraBallot.setQuantity(request.getQuantity());
-
-        return iDetailExtraBallotRepository.register(detailExtraBallot);
-    }
+    
 }

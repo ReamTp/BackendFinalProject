@@ -1,9 +1,6 @@
 package com.backend.backendfinalproject.repositories;
 
-import com.backend.backendfinalproject.models.Ballot;
-import com.backend.backendfinalproject.models.Product;
-import com.backend.backendfinalproject.models.ProductBallot;
-import com.backend.backendfinalproject.models.Response;
+import com.backend.backendfinalproject.models.*;
 import com.backend.backendfinalproject.repositories.interfaces.IBallotRepository;
 import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
@@ -34,20 +31,12 @@ public class BallotRepositoryImpl implements IBallotRepository {
     }
 
     @Override
-    public Response register(Ballot ballot, List<ProductBallot> products) {
+    public Response register(Ballot ballot, List<ProductBallot> products, List<ExtraBallot> extras) {
         Ballot newBallot = entityManager.merge(ballot);
         Response response = new Response("Registration Failed", false);
 
         boolean registerSuccess = true;
 
-        // Por favor crea tu tabla con una query algo asi
-        // CREATE TABLE ballots_products(
-        //	ballot_id INT NOT NULL,
-        //    FOREIGN KEY (ballot_id) REFERENCES ballots(id),
-        //    product_id INT NOT NULL,
-        //    FOREIGN KEY (product_id) REFERENCES products(id),
-        //    quantity INT NOT NULL
-        //);
         for (ProductBallot product: products) {
             Product prd = new Product();
             prd.setId(product.getId());
@@ -56,6 +45,23 @@ public class BallotRepositoryImpl implements IBallotRepository {
             query.setParameter(1, newBallot);
             query.setParameter(2, prd);
             query.setParameter(3, product.getQuantity());
+            int result = query.executeUpdate();
+
+            if (result == 0) {
+                registerSuccess = false;
+                break;
+            }
+        }
+
+        //para agregar a la tabla detailExtraBallot
+        for (ExtraBallot extra: extras) {
+            Extra extr = new Extra();
+            extr.setId(extra.getId());
+
+            Query query = entityManager.createNativeQuery("INSERT INTO detail_extra_ballot (ballot_id, extra_id, quantity) VALUES(?, ?, ?)");
+            query.setParameter(1, newBallot);
+            query.setParameter(2, extr);
+            query.setParameter(3, extra.getQuantity());
             int result = query.executeUpdate();
 
             if (result == 0) {
