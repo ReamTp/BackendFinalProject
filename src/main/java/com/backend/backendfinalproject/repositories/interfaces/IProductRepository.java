@@ -1,6 +1,6 @@
 package com.backend.backendfinalproject.repositories.interfaces;
 import com.backend.backendfinalproject.models.Product;
-import com.backend.backendfinalproject.models.Response;
+import com.backend.backendfinalproject.models.request.Response;
 
 import java.util.List;
 

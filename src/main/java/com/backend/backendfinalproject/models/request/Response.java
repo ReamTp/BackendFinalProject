@@ -1,4 +1,4 @@
-package com.backend.backendfinalproject.models;
+package com.backend.backendfinalproject.models.request;
 
 import lombok.Getter;
 import lombok.Setter;

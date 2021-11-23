@@ -1,8 +1,8 @@
 package com.backend.backendfinalproject.controller;
 
 import com.backend.backendfinalproject.models.Ballot;
-import com.backend.backendfinalproject.models.BallotRequest;
-import com.backend.backendfinalproject.models.Response;
+import com.backend.backendfinalproject.models.request.BallotRequest;
+import com.backend.backendfinalproject.models.request.Response;
 import com.backend.backendfinalproject.models.User;
 import com.backend.backendfinalproject.repositories.interfaces.IBallotRepository;
 import com.backend.backendfinalproject.utils.JWTUtil;
@@ -29,9 +29,8 @@ public class BallotController {
         return ballotRepository.getBallot(id);
     }
 
-    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    @PostMapping(value = "/register")
     public Response register(@RequestBody BallotRequest request) {
-        System.out.println(request);
         Ballot ballot = new Ballot();
         User user = new User();
         user.setId(request.getUser_id());
