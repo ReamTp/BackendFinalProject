@@ -1,8 +1,7 @@
 package com.backend.backendfinalproject.repositories;
 
-import com.backend.backendfinalproject.models.City;
 import com.backend.backendfinalproject.models.Product;
-import com.backend.backendfinalproject.models.Response;
+import com.backend.backendfinalproject.models.request.Response;
 import com.backend.backendfinalproject.repositories.interfaces.IProductRepository;
 import org.hibernate.Session;
 import org.springframework.stereotype.Repository;

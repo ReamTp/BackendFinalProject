@@ -1,7 +1,7 @@
 package com.backend.backendfinalproject.controller;
 
 import com.backend.backendfinalproject.models.City;
-import com.backend.backendfinalproject.models.Response;
+import com.backend.backendfinalproject.models.request.Response;
 import com.backend.backendfinalproject.repositories.interfaces.ICityRepository;
 import com.backend.backendfinalproject.utils.JWTUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,12 +27,12 @@ public class CityController {
         return jwt.validateToken(token) ? cityRepository.getCity(id) : new Response("City not found", false);
     }
 
-    @RequestMapping( value = "/register", method = RequestMethod.POST)
+    @PostMapping( value = "/register")
     public Response register(@RequestHeader(value = "Authorization") String token, @RequestBody City city) {
         return jwt.validateToken(token) ? cityRepository.register(city) : new Response("Register Failed", false);
     }
 
-    @RequestMapping(value = "/update", method = RequestMethod.PUT)
+    @PutMapping(value = "/update")
     public Response update(@RequestHeader(value = "Authorization") String token, @RequestBody City city) {
         return jwt.validateToken(token) ? cityRepository.update(city) : new Response("Update Failed", false);
     }

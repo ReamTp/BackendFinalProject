@@ -1,7 +1,7 @@
 package com.backend.backendfinalproject.controller;
 
 import com.backend.backendfinalproject.models.Department;
-import com.backend.backendfinalproject.models.Response;
+import com.backend.backendfinalproject.models.request.Response;
 import com.backend.backendfinalproject.repositories.interfaces.IDepartmentRepository;
 import com.backend.backendfinalproject.utils.JWTUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,13 +28,12 @@ public class DepartmentController{
         return jwt.validateToken(token) ? departmentRepository.getDepartment(id) : new Response("Department not found", false);
     }
 
-    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    @PostMapping(value = "/register")
     public Response register(@RequestHeader(value = "Authorization") String token, @RequestBody Department department) {
-        System.out.println(department);
         return jwt.validateToken(token) ? departmentRepository.register(department) : new Response("Register Failed", false);
     }
 
-    @RequestMapping(value = "/update", method = RequestMethod.PUT)
+    @PutMapping(value = "/update")
     public Response update(@RequestHeader(value = "Authorization") String token, @RequestBody Department department) {
         return jwt.validateToken(token) ? departmentRepository.update(department) : new Response("Update Failed", false);
     }

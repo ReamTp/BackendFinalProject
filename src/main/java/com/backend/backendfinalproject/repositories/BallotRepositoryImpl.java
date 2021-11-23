@@ -3,7 +3,7 @@ package com.backend.backendfinalproject.repositories;
 import com.backend.backendfinalproject.models.Ballot;
 import com.backend.backendfinalproject.models.Product;
 import com.backend.backendfinalproject.models.ProductBallot;
-import com.backend.backendfinalproject.models.Response;
+import com.backend.backendfinalproject.models.request.Response;
 import com.backend.backendfinalproject.repositories.interfaces.IBallotRepository;
 import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
@@ -40,14 +40,6 @@ public class BallotRepositoryImpl implements IBallotRepository {
 
         boolean registerSuccess = true;
 
-        // Por favor crea tu tabla con una query algo asi
-        // CREATE TABLE ballots_products(
-        //	ballot_id INT NOT NULL,
-        //    FOREIGN KEY (ballot_id) REFERENCES ballots(id),
-        //    product_id INT NOT NULL,
-        //    FOREIGN KEY (product_id) REFERENCES products(id),
-        //    quantity INT NOT NULL
-        //);
         for (ProductBallot product: products) {
             Product prd = new Product();
             prd.setId(product.getId());

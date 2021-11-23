@@ -1,7 +1,7 @@
 package com.backend.backendfinalproject.repositories;
 
 import com.backend.backendfinalproject.models.Department;
-import com.backend.backendfinalproject.models.Response;
+import com.backend.backendfinalproject.models.request.Response;
 import com.backend.backendfinalproject.repositories.interfaces.IDepartmentRepository;
 import org.hibernate.Session;
 import org.springframework.stereotype.Repository;

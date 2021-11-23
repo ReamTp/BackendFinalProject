@@ -1,5 +1,6 @@
-package com.backend.backendfinalproject.models;
+package com.backend.backendfinalproject.models.request;
 
+import com.backend.backendfinalproject.models.ProductBallot;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -17,8 +18,8 @@ public class BallotRequest {
 
     public BallotRequest() {}
 
-    public BallotRequest(int user_id, Date date, double total, List<ProductBallot> products) {
-        this.user_id = user_id;
+    public BallotRequest(int userId, Date date, double total, List<ProductBallot> products) {
+        this.user_id = userId;
         this.date = date;
         this.total = total;
         this.products = products;

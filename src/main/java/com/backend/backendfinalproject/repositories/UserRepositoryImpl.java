@@ -1,6 +1,6 @@
 package com.backend.backendfinalproject.repositories;
 
-import com.backend.backendfinalproject.models.Response;
+import com.backend.backendfinalproject.models.request.Response;
 import com.backend.backendfinalproject.models.User;
 import com.backend.backendfinalproject.repositories.interfaces.IUserRepository;
 import de.mkammerer.argon2.Argon2;
@@ -54,19 +54,14 @@ public class UserRepositoryImpl implements IUserRepository {
     }
 
     @Override
-    public Response register(User user) {
+    public User register(User user, String password) {
         User newUser = entityManager.merge(user);
-        Response rsp = new Response();
-        rsp.setStatus(false);
 
         if (newUser != null) {
-            rsp.setMessage("Registration Completed");
-            rsp.setStatus(true);
-        } else {
-            rsp.setMessage("Registration Failed");
+            user.setPassword(password);
+            return getUserByCredentials(user);
         }
-
-        return rsp;
+        return null;
     }
 
     @Override
