@@ -11,7 +11,7 @@ import java.util.List;
 @Getter @Setter
 @ToString
 public class BallotRequest {
-    private int user_id;
+    private int userId;
     private Date date;
     private double total;
     private List<ProductBallot> products;
@@ -19,7 +19,7 @@ public class BallotRequest {
     public BallotRequest() {}
 
     public BallotRequest(int userId, Date date, double total, List<ProductBallot> products) {
-        this.user_id = userId;
+        this.userId = userId;
         this.date = date;
         this.total = total;
         this.products = products;

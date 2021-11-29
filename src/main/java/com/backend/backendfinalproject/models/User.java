@@ -20,8 +20,8 @@ public class User implements Serializable {
     @Getter @Setter @Column(nullable = false)
     private String name;
 
-    @Getter @Setter @Column(nullable = false)
-    private String last_name;
+    @Getter @Setter @Column(name = "last_name", nullable = false)
+    private String lastName;
 
     @Getter @Setter
     private int phone;
@@ -50,18 +50,22 @@ public class User implements Serializable {
 
     public User() {}
 
+    public User(int id) {
+        this.id = id;
+    }
+
     public User(String name, String lastName, String email, String password) {
         this.name = name;
-        this.last_name = lastName;
+        this.lastName = lastName;
         this.email = email;
         this.password = password;
         this.state = true;
     }
 
-    public User(int id, String name, String last_name, int phone, String direction, City city, String email, String password, String sex, String avatar, Boolean state) {
+    public User(int id, String name, String lastName, int phone, String direction, City city, String email, String password, String sex, String avatar, Boolean state) {
         this.id = id;
         this.name = name;
-        this.last_name = last_name;
+        this.lastName = lastName;
         this.phone = phone;
         this.direction = direction;
         this.city = city;

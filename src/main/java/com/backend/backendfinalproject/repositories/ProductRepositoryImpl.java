@@ -15,7 +15,6 @@ import java.util.List;
 @Repository
 @Transactional
 public class ProductRepositoryImpl implements IProductRepository {
-
     @PersistenceContext
     private EntityManager entityManager;
 
@@ -23,6 +22,20 @@ public class ProductRepositoryImpl implements IProductRepository {
     public List<Product> getProducts() {
         Session session = entityManager.unwrap(Session.class);
         return session.createQuery("FROM Product WHERE state = 1", Product.class).getResultList();
+    }
+
+    @Override
+    public List<Product> getProductsByCategory(int id) {
+        Session session = entityManager.unwrap(Session.class);
+        return session.createQuery("FROM Product WHERE state = 1 AND category_id = "+id, Product.class).getResultList();
+    }
+
+    @Override
+    public List<Product> getProductsBySearch(String search) {
+        Session session = entityManager.unwrap(Session.class);
+        String cadena = new StringBuilder().append("FROM Product WHERE state = 1 AND name LIKE '%").append(search).append("%'").toString();
+        System.out.println(cadena);
+        return session.createQuery(cadena, Product.class).getResultList();
     }
 
     @Override

@@ -83,16 +83,11 @@ public class JWTUtil {
     }
 
     public boolean validateToken(String token) {
-        System.out.println(token);
         int userId = Integer.parseInt(getKey(token));
-        System.out.println(userId);
-        String email = getValue(token);
-        System.out.println(email);
 
         Session session = entityManager.unwrap(Session.class);
-        List<User> listUsers = session.createQuery("FROM User WHERE id= :id AND email = :email", User.class)
+        List<User> listUsers = session.createQuery("FROM User WHERE id= :id", User.class)
                 .setParameter("id", userId)
-                .setParameter("email", email)
                 .getResultList();
 
         return !listUsers.isEmpty();

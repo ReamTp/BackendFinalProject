@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/products")
 public class ProductController {
@@ -22,9 +23,19 @@ public class ProductController {
         return iProductRepository.getProducts();
     }
 
+    @RequestMapping("/category/{id}")
+    public List<Product> getProductsByCategory(@PathVariable int id) {
+        return iProductRepository.getProductsByCategory(id);
+    }
+
+    @RequestMapping("/search/{search}")
+    public List<Product> getProductsBySearch(@PathVariable String search) {
+        return iProductRepository.getProductsBySearch(search);
+    }
+
     @RequestMapping("/{id}")
-    public Object getProduct(@RequestHeader(value = "Authorization") String token, @PathVariable int id) {
-        return jwt.validateToken(token) ? iProductRepository.getProduct(id) : new Response("Product not found", false);
+    public Object getProduct(@PathVariable int id) {
+        return iProductRepository.getProduct(id);
     }
 
     @PostMapping( value = "/register")
