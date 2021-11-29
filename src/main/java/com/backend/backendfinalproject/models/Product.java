@@ -31,15 +31,18 @@ public class Product {
     @Column(nullable = false)
     private boolean state;
 
+    private String image;
+
     public Product() {}
 
-    public Product(int id, String name, String detail, float price, Category category, Boolean state) {
+    public Product(int id, String name, String detail, float price, Category category, Boolean state, String image) {
         this.id = id;
         this.name = name;
         this.detail = detail;
         this.price = price;
         this.category = category;
         this.state = state;
+        this.image = image;
     }
 
     public int getId() {
@@ -84,6 +87,14 @@ public class Product {
 
     public boolean isState() {
         return state;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public void setState(boolean state) {
